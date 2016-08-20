@@ -67,7 +67,7 @@ extern std::set<ScriptEditorImplementation *> g_pScriptEditorWindowList;
 extern KviModule * g_pEditorModulePointer;
 
 static QColor g_clrBackground(0, 0, 0);
-static QColor g_clrBackgroundHighlight(50, 50, 50);
+static QColor g_clrHighlightCurrentLine(50, 50, 50);
 static QColor g_clrNormalText(100, 255, 0);
 static QColor g_clrBracket(255, 0, 0);
 static QColor g_clrComment(0, 120, 0);
@@ -231,7 +231,7 @@ void ScriptEditorWidget::highlightCurrentLine()
 
 	selection.cursor = textCursor();
 	selection.cursor.clearSelection();
-	selection.format.setBackground(g_clrBackgroundHighlight);
+	selection.format.setBackground(g_clrHighlightCurrentLine);
 	selection.format.setProperty(QTextFormat::FullWidthSelection, true);
 
 	setExtraSelections(QList<QTextEdit::ExtraSelection>({ selection }));
@@ -496,7 +496,7 @@ ScriptEditorWidgetColorOptions::ScriptEditorWidgetColorOptions(QWidget * pParent
 	gbox->setInsideSpacing(0);
 
 	addColorSelector(gbox, __tr2qs_ctx("Background:", "editor"), &g_clrBackground, true);
-	addColorSelector(gbox, __tr2qs_ctx("Background Highlight:", "editor"), &g_clrBackgroundHighlight, true);
+	addColorSelector(gbox, __tr2qs_ctx("Highlight current line:", "editor"), &g_clrHighlightCurrentLine, true);
 	addColorSelector(gbox, __tr2qs_ctx("Normal text:", "editor"), &g_clrNormalText, true);
 	addColorSelector(gbox, __tr2qs_ctx("Brackets:", "editor"), &g_clrBracket, true);
 	addColorSelector(gbox, __tr2qs_ctx("Comments:", "editor"), &g_clrComment, true);
@@ -806,7 +806,7 @@ void ScriptEditorImplementation::loadOptions()
 
 	KviConfigurationFile cfg(szTmp, KviConfigurationFile::Read);
 	g_clrBackground = cfg.readColorEntry("Background", QColor(0, 0, 0));
-	g_clrBackgroundHighlight = cfg.readColorEntry("BackgroundHighlight", QColor(50, 50, 50));
+	g_clrHighlightCurrentLine = cfg.readColorEntry("HighlightCurrentLine", QColor(50, 50, 50));
 	g_clrNormalText = cfg.readColorEntry("NormalText", QColor(100, 255, 0));
 	g_clrBracket = cfg.readColorEntry("Bracket", QColor(255, 0, 0));
 	g_clrComment = cfg.readColorEntry("Comment", QColor(0, 120, 0));
@@ -853,7 +853,7 @@ void ScriptEditorImplementation::saveOptions()
 
 	KviConfigurationFile cfg(szTmp, KviConfigurationFile::Write);
 	cfg.writeEntry("Background", g_clrBackground);
-	cfg.writeEntry("BackgroundHighlight", g_clrBackgroundHighlight);
+	cfg.writeEntry("HighlightCurrentLine", g_clrHighlightCurrentLine);
 	cfg.writeEntry("NormalText", g_clrNormalText);
 	cfg.writeEntry("Bracket", g_clrBracket);
 	cfg.writeEntry("Comment", g_clrComment);
