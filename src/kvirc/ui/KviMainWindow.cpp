@@ -479,7 +479,7 @@ void KviMainWindow::closeWindow(KviWindow * wnd)
 	{
 		if(!g_pApp->kviClosingDown())
 		{
-			qDebug("Have no active window: trying to pick one");
+			//qDebug("Have no active window: trying to pick one");
 
 			// this happens when there are only minimized windows in the Mdi area
 			// just pick another window to be the active one
