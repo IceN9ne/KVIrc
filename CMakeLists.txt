@@ -799,6 +799,22 @@ else()
 	set(CMAKE_STATUS_PYTHON_SUPPORT "No")
 endif()
 
+# Check for Ruby support
+option(WANT_RUBY "Compile Ruby support" ON)
+if(WANT_RUBY)
+	find_package(Ruby)
+	if(RUBY_FOUND)
+		set(COMPILE_RUBY_SUPPORT 1)
+		set(CMAKE_STATUS_RUBY_SUPPORT "Yes")
+		list(APPEND LIBS ${RUBY_LIBRARY})
+		include_directories(${RUBY_INCLUDE_DIRS})
+	else()
+		set(CMAKE_STATUS_RUBY_SUPPORT "No, not found.")
+	endif()
+else()
+	set(CMAKE_STATUS_RUBY_SUPPORT "No")
+endif()
+
 ############################################################################
 # Enchant (spell checker) support
 ############################################################################
