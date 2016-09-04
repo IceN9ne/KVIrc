@@ -4,6 +4,7 @@
 
 #include "kvi_settings.h"
 #include "KviModule.h"
+#include "KviLocale.h"
 
 #ifdef COMPILE_RUBY_SUPPORT
 
@@ -47,6 +48,7 @@ static bool rubycore_module_can_unload(KviModule *)
 KVIRC_MODULE(
 	"RubyCore",
 	"1.0.0",
+	"Copyright (C) 2016 IceN9ne",
 	"Ruby Scripting Engine Core",
 	rubycore_module_init,
 	rubycore_module_can_unload,

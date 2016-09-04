@@ -1,6 +1,7 @@
 #include "kvi_settings.h"
 #include "KviModule.h"
 #include "KviModuleManager.h"
+#include "KviLocale.h"
 
 #ifdef COMPILE_RUBY_SUPPORT
 
@@ -148,7 +149,7 @@ static bool ruby_kvs_cmd_destroy(KviKvsModuleCommandCall * c)
 		Returns [b]1[/b] if the Ruby scripting support is available and [b]0[/b] otherwise.
 */
 
-static bool ruby_kvs_fnc_isAvailable(KviKvsModuleFunction * c)
+static bool ruby_kvs_fnc_isAvailable(KviKvsModuleFunctionCall * c)
 {
 #ifdef COMPILE_RUBY_SUPPORT
 	g_pRubyCoreModule = g_pModuleManager->getModule("rubycore");
